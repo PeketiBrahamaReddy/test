@@ -1,0 +1,417 @@
+git
+
+DevOps:
+
+Linux Administration 
+Virtualization
+Storage
+Networking
+
+SCM: git github bitbucket
+Build Tools: Maven, Gradle, Msbuild
+CI/CD : Jenkins => build test scan deployment
+Nexus/Jfrog
+Docker
+K8s
+Ansible
+terraform
+
+SCM
+Ansible
+============================================================
+Version Control System:
+git/github/bitbucket
+
+What is Version Control System?
+VCS is process for managing source code that allow developers, designers, and team members to work together on the same project.
+
+VCS ensure everyone has access to the latest code and manage multiple versions of entire project or product.
+
+VCS allows us to manage changes to files over time.
+
+We can use VCS to version code, binary files, and digital assets. 
+
+VCS keep track of every change ever made. 
+
+there are several VCS. some are centralized and some are distributed. 
+
+Git
+Github 
+BitBucket 
+GitLab 
+SVN
+ClearCase 
+Helix Core 
+Mercurial
+
+What is git?
+Git is a free amd opensource distributed version control system, which is designed to handle everything from small to very large projects with speed and efficiency. 
+
+Uses of git:
+ - Git is used to tracking changes in the source code 
+ - Distributed version control tool used for source code management
+ - Allows multiple developers to work together 
+
+The most common things that development teams looking for:
+1. Concurrent Development 
+   multiple developers and designers can work on the same set of files without worrying about they are duplicating effort or overwriting other team member's work. 
+   
+   /apps => index.php images.php products.php 
+   dev1 => index.php 
+   dev2 => index.php
+2. Automation
+3. Team Collaboration 
+4. Tracked Chages
+     VCS captures changes and maintains a proper history forever. So everyone gets access to who is working on what, and the changes that are made. 
+5. Hight Availability/Disaster Recovery 
+   with VCS  we can have replica of our enterprise repository -- our single source of truth operating in another location. If some thing happens, you can immediately swith over to a replica of the master for uninterrupted availability. 
+   
+   Every developer has an entire copy of the source code on thier local system.
+=========================================================
+Create Github Account:
+github  
+bitbucket
+
+What is github?
+What is bitbucket?
+ It is a web-based platform that provides hosting for software development projects using git version control system. 
+ 
+ It offers collaborative environment for developers to work together on projects, track changes, and manage source code repositories.
+ 
+What is a repository?
+A repository contains all of your project's files, revision history, and collaborator discussion.
+
+To connect to Github Server or BitBucket Server 
+install git software on your local machine which is a kind of client
+
+On windows:
+https://git-scm.com/download/
+git --version
+
+on linux:
+ubuntu/debian: apt install git -y 
+RHEL/centos/rocky/fedora: 
+yum install git -y 
+dnf install git -y 
+
+git --version
+============================================================
+git config --list --show-origin  => To view all settings
+
+/etc/gitconfig => it contains values applied to every user on the system and thier repositories. 
+
+.git/config : this config file is specific to a repository.
+==========================================================
+Configure you identity:
+The first thing you shoud do when you install git is to set your username and email address. 
+
+this is important because every git commit uses this information.
+
+git config --global user.name "rama"
+git config --global user.email "rama@keyspaceits.com"
+
+ Note: If you want to overwrite existing username with a different name or email address for specific projects, you can run the command without --global option when you are in that project. 
+===========================================================
+Default branch:
+
+A branch is movable pointer to a specific commit in the version history of a  git repository. The branch concept allows you to work on different features or changes to your projects independently of the main codebase and it enables parallel development. 
+
+By default git will create a branch called master/main when you create a new repository. 
+
+We can set a different name for the initial branch. 
+
+To set "main" as the default branch name 
+git config --global init.defaultBranch main 
+
+git config --list => shows configuration settings. 
+git config user.name 
+git config user.email  
+========================================================
+git help 
+========================================================
+Getting a git repository
+
+we can obtain a git repository in one of two ways:
+            - we can take a local directory that is currently not under version control, and turn it into git repository
+			
+			- we can clone an existing git repository from elsewhere
+
+- Create a work directory 
+mkdir /projectA
+cd /projectA
+
+- To create/configure local git repository
+git init
+
+What is .git directory?
+
+.git directory is located at the root of the repository and contains all the metadata and objects database that git uses to manage the version control history of a project. 
+
+.git directory contents:
+HEAD => This file points to the latest commit in the currently checked-out branch. It tells git which branch is currently active. 
+
+Objects => This directory stores all the content of your database, including the compressed content for each commit, tree and object. 
+
+Refs => This directory contains points to commits (branches, tags, and remote references). 
+
+Config => This file contains project specific configuration settings. 
+
+Hooks => This directory allows you to install scripts that git will execute before or after certain events such as committing or merging. 
+
+Index => This file is the staging area or index.It lists all the files in the current commit and caches information about them that git uses when creating new commit. 
+
+Logs =>This directory contains commit logs. Git uses these logs to store information about commits mande by developers. 
+
+info : This directory contains the global exclude file, which lists patterns that git should ignore in all repositories.
+
+Git WorkFlow			
+   The git workflow is mainly devied into three areas-
+    Working Directory 
+	Staging Area
+	Git Repository 
+	
+	Working Directory: This is the actual directory on your local machine where you have your project files. 
+	
+	Staging Area(Index): The index is an intermediate area where you prepare changes before commiting them to the git repository
+	
+	use git add command to move changes from the working directory to the index(staging area) 
+	
+	Git Repository (local repository): This is the .git directory within your project. It contains all the metadata and objects that git uses to store the projects history and manage changes. 
+	
+	git commit -m "commit message"
+	
+	Note: When you make changes to files in your working directory, git sees the differences between the current state of your files and the last committed state. You can them choose to state these changes and once you satisfied with set of changes in the staging area, you can commit them to the local repository. 
+		
+	so you working directory is your workspace, the staging area is where you prepare your changes, and the local repository is where the commited changes are stored.
+===================================================
+git init
+git add 
+git commit -m 
+git status
+git log
+==================================================
+git remote 
+
+To add remote repository
+git remote add <remote name> <remote repository url>
+git remote add origin https://github.com/projectkeyspace/ksops.git
+
+git push -u origin main
+=======================================================
+user access tocken: 
+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
+======================================================
+echo "# ksops" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/projectkeyspace/ksops.git
+git push -u origin main
+=====================================================
+git add  => it is used to stages changes in working directory for the next commit. It tells git that want to include updates to a perticuler file or all files in the next commit. 
+
+git add file-names 
+git add .  => to add all changes in current directory and its subdirectories.
+
+It stages modified files and new files, but it does not stage deletions. 
+
+git add -A  => it will stages all changes, including modified files, new files and deletions. 
+
+It stages all changes across the entire working tree 
+======================================================
+git status => It shows the status of changes as untracked, modified, or staged in your working directory. It helps you see what has been modifiedd an what needs to be commited. 
+=====================================================
+git commit => It is used to record or save changes that have been staged. 
+
+A commit in git represent a snapshot of your repository at a specific point in time. 
+
+After commiting changes, they are stored in the version history of your git repository. 
+
+git commit  -m "your commit message" 
+
+Note: provide a meaningful commit messages to help others or yourself understand the purpose of each commit.
+=======================================================
+git log => It shows a log of all commits in the repository
+
+It displays information such as the commit hash, author, date and commit messages. 
+
+by default git log shows up first most recent commits 
+
+git log -p 2 
+
+-p shows the patch introduced with each commit 
+--stat shows statistics for files modified in each commit
+=======================================================
+To unstage a staged file 
+Note: let's say you've changed multiple files and want to commit them as two separate changes, but accidentally stages all changes. How can you unstage one of two files? 
+
+git add * 
+git add -A 
+
+To unstage
+git restore --staged <file>
+git reset file
+git reset . => to unstage all files
+=========================================================
+git clone => it is used to clone a repository from remote source to your local machine. It creates a copy of the remote repository on your local machine. 
+
+git push => to push local commits or your changes to a remote repository.
+========================================================
+Git Branching: 
+
+Branching means you deviate from the main line of development and continue to do work without messing with that main line. 
+
+Branching in git allows you to create divergent lines of development within a repository. 
+
+It enables you to work on different features, bug fixes, or experiments without affecting the main codebase until you are ready to merge your changes. 
+
+To create a branch
+git branch <branch name>
+
+To switch between branches
+git checkout branch-name 
+git switch branch-name 
+
+To create a new branch and switch to it at the same time
+git checkout -b <branch-name> 
+git switch -c branch-name
+
+To merge branch 
+git merge branch-name 
+
+Note: example to merge qa branch back into your main branch to deploy to production. 
+git switch main 
+git merge qa
+
+To delete a branch
+git branch -d branch-name 
+
+To list all branches 
+git branch 
+
+To list all remote branches 
+git branch -r 
+
+To list both local and remote branches 
+git branch -a
+
+To delete a branch if not merged 
+git branch -D branch-name 
+
+To push a new local branch to a remote repository
+git push -u orgin <branch-name> 
+
+To push all local branches to the remote repository
+git push --all 
+
+The above command pushes all branches to remote repository, creating, updating corresponding branches on the remote.
+
+To pull remote branches to your local repository 
+git fetch 
+
+Note: git fetch command fetches all remote branches and updates your local repository with the latest changes from the remote repository. However, it does not automatically update your working directory or merge the changes into your local branches. 
+=========================================================
+git fetch 
+git pull
+
+Note: git fetch and git pull commands are used to update your local repository with changes from a remote repository. 
+
+git fetch: 
+
+This commands only fetches the changes from the remote repository to your local repository and it does not automatically merge or apply changes to your working directory.
+
+git fetch     => this will fetch changes in all branches 
+git log origin
+git checkout origin/main  => switch to a specific remote branch 
+
+git merge => this apply changes in all remote branches to local 
+
+git fetch remote branch-name
+git merge remote/branch-name
+==========================
+git pull : This command is used to fetch and merge changes from the repository into local. 
+==========================
+git stash : This command allows you to temporarly save changes that you don't want to commit immediately, so you can switch to another branch or perform other operations without committing your changes. 
+
+git stash save "your stach message" 
+git stash list  => shows a list of all stashes. 
+git stash apply => applies the changes from the latest stash to your working directory. 
+
+If you want to apply one of the older stashes.
+git stash apply stash@{n} 
+
+To delete a specific stash 
+git stash drop stash@{n}
+
+To apply and drop 
+git stash pop
+
+Note:Stashes are local to your repository and are not pushed to the remote repository
+
+if you have uncommited changes that you want to keep. 
+
+git stash branch branch-name 
+========================================================
+If you want to see what you have exactly modified before you commit the changes into repo. 
+
+git diff 
+git diff --staged 
+git diff commit-id1  commit-id2 
+
+git diff branch1  branch2
+========================================================
+git rm 
+
+To remove files from a git repository, you can use 'git rm' command 
+
+if you want to remove files are untracked i.e not yet added to the repository
+
+git rm -r -f --cached path/to/untracked_file_or_dir
+
+This removes the files or directory from the working directory and stages the change for the next commit. 
+
+If the files are already tracked
+git rm path_to_tracked_file 
+
+this removes the file from both the working directory and the staging area.
+
+If you want to keep the file in your working directory but remove it from the repository
+
+git rm --cached path_to_tracked_file
+
+git commit -m "remove tracked files"
+
+git push -u origin branch-name 
+========================================================
+gitignore:
+
+If you want to execlude certain files from being tracked in the future, you can add them to the .gitignore file. 
+======================================================
+If you want to redo commit
+
+git commit --amend 
+======================================================
+To revert changes in a git repository
+
+i) if you want revert committed changes
+git revert commit_hash 
+======================================================
+git rebase: 
+
+git rebase used to modify the commit history of a branch. 
+
+it allows you to rewrite the commit history by moving, comibining or deleting commits. 
+
+git rebase is a process of combining a sequence of commits to a new base commit. 
+
+The primary reason for rebasing is to maintain a linear project history.
+
+The goal of rabasing is to take all the commits from a deature branch and put it on the main branch.
+
+feature
+main 
+
+git checkout feature 
+git rebase main
+========================================================
